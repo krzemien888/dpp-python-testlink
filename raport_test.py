@@ -84,19 +84,17 @@ if __name__ == '__main__':
 
         result = runner.run(suite)
 
-        pprint(result.jsonify())
-
         TESTLINK_API_PYTHON_SERVER_URL = "http://192.168.100.100/lib/api/xmlrpc/v1/xmlrpc.php"
         TESTLINK_API_PYTHON_DEVKEY = "74ca1b065b0e8466e4536f39a8215284"
 
         tlh = testlink.TestLinkHelper(TESTLINK_API_PYTHON_SERVER_URL, TESTLINK_API_PYTHON_DEVKEY)
         tls = testlink.TestlinkAPIClient(tlh._server_url, tlh._devkey, verbose=True)
-        print(tls.countProjects())
+        print('Projects fetched: {}'.format(tls.countProjects()))
 
         tc_info = tls.getTestCase(None, testcaseexternalid='dpp-1')
-        print(tc_info)
+
         tc_info = tls.getProjectTestPlans('1')
-        print(tc_info)
+
         tls.reportTCResult(None, 2, None, 'p', 'some notes', guess=True,
                            testcaseexternalid='dpp-1',
                            platformname='NewPlatform',
